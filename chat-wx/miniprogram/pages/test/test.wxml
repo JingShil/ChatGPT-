@@ -1,0 +1,15 @@
+<view class="body" bind:touchmove="moveVoice" bind:touchend="endVoice">
+  <view class="voice" style="{{voiceStyle}}">
+    {{time}}
+  </view>
+  <view class="option">
+    <text wx:if="{{isPause&&isStart}}">松开取消</text>
+    <view class="cancel" style="{{cancelStyle}}">
+      <image src="../imags/叉叉 (2).png"></image>
+    </view>
+  </view>
+  <view class="start" style="{{startStyle}}" bindtouchstart="startVoice">
+    <text wx:if="{{!isPause&&isStart}}">松开发送</text>
+    <image src="../imags/语音 (5).png"></image>
+  </view>
+</view>

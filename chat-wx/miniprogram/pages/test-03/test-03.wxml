@@ -1,0 +1,2 @@
+<!-- <canvas id="myCanvas" type="2d" style="border: 1px solid; width: 300px; height: 150px;" ></canvas> -->
+<button type="primary" bind:tap="onPlay"></button>

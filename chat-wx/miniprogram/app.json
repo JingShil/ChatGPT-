@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/chatgpt/chatgpt",
+    "pages/test/test",
+    "pages/test-02/test-02",
+    "pages/test-03/test-03",
+    "pages/setting/setting",
+    "pages/setUp/setUp",
+
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

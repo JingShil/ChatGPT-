@@ -1,0 +1,14 @@
+/* pages/test-03/test-03.wxss */
+page{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+/* pages/test-02/test-02.wxss */
+page{
+  height: 100vh;
+  width: 100vw;
+}
+
+.voice{
+  height: 30px;
+  width: 80px;
+  background-color: rgb(133, 226, 198);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  
+}
+
+.voice image{
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+}
+
+.time{
+  font-size: 15px;
+  margin-left: 5px;
+  transition: 0.5s;
+}

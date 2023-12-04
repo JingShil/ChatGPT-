@@ -1,0 +1,10 @@
+<view style="display: flex;height: 100%;width: 100%;justify-content: center;align-items: center;">
+  <view class="voice" type="primary" >
+    <!-- <image src="../imags/语音 (5).png"></image>
+    <view class="time" style="width: {{timeWidth}}px;">{{time}}''</view> -->
+    <!-- <button bindtap="playAudio">播放音频</button> -->
+    <audio id="myAudio" src="{{audioSrc}}"></audio>
+  </view>
+</view>
+
+
