@@ -14,8 +14,8 @@ Page({
       "settingChildren":["1","2","3"],"defaultValue":"1","userDefaultValue":"1","model":"0"},
     ],
     pickerIndex: 0,
-    requestIp:"8.222.154.106:8081",
-    // requestIp:"localhost:8083",
+    // requestIp:"8.222.154.106:8081",
+    requestIp:"localhost:8083",
     userId:"1"
   },
   pickerChange:function(e){

@@ -7,6 +7,7 @@ import com.chat.back.entity.ChatResponseData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -17,6 +18,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChatGptApi {
 
@@ -24,7 +27,7 @@ public class ChatGptApi {
     private WebSocket webSocket;
 
 
-    public ChatResponseData sendChatGpt(ChatRequestData chatRequestData) {
+    public String sendChatGpt(ChatRequestData chatRequestData) {
         try {
             //创建URL对象，使用HTTP POST方法请求JSON格式的数据
 
@@ -46,24 +49,27 @@ public class ChatGptApi {
                 while ((input = bufferedReader.readLine()) != null) {
                     input = input.replaceAll("^data:\\s*", "");
                     System.out.println(input);
-                    try {
-                        ChatResponseData re = objectMapper.readValue(input, ChatResponseData.class);
-                        webSocket.sendMessage(input);
-                        System.out.println(re);
-                    } catch (JsonProcessingException e) {
-//                        System.out.println("Invalid input format: " + input);
-                        System.out.println("数据解析错误: " + e);
-                        continue;
-                        // 可以选择跳过该数据或进行其他处理
-                    }
+//                    try {
+////                        ChatResponseData re = objectMapper.readValue(input, ChatResponseData.class);
+//
+//                        webSocket.sendMessage(input);
+////                        System.out.println(re);
+//                    } catch (JsonProcessingException e) {
+////                        System.out.println("Invalid input format: " + input);
+//                        System.out.println("数据解析错误: " + e);
+//                        continue;
+//                        // 可以选择跳过该数据或进行其他处理
+//                    }
+                    webSocket.sendMessage(input);
                 }
             }else{
                 StringBuilder stringBuilder = new StringBuilder();
                 while ((input = bufferedReader.readLine()) != null) {
                     stringBuilder.append(input);
                 }
-                ChatResponseData re = objectMapper.readValue(stringBuilder.toString(), ChatResponseData.class);
-                return re;
+//                ChatResponseData re = objectMapper.readValue(stringBuilder.toString(), ChatResponseData.class);
+                String content = getContent(stringBuilder.toString());
+                return content;
             }
             bufferedReader.close();
             cn.disconnect();
@@ -73,6 +79,18 @@ public class ChatGptApi {
         return null;
     }
 
+    private String getContent(String input){
+        JSONObject jsonObject = new JSONObject(input);
+        JSONArray choices = jsonObject.getJSONArray("choices");
+        JSONObject choice = choices.getJSONObject(0);
+        JSONObject message = choice.getJSONObject("message");
+        String content = message.getString("content");
+//        String pattern = "\"content\":\"(.*?)\"";
+//        Pattern regex = Pattern.compile(pattern);
+//        Matcher matcher = regex.matcher(input);
+//        String group = matcher.group(1);
+        return content;
+    }
 
 
     /**

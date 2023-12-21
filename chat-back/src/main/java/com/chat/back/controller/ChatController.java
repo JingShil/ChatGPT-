@@ -61,13 +61,14 @@ public class ChatController {
         chatRequestData.setMessages(messages);
         chatRequestData.setModel(messageDto.getModel());
 //        chatGptApi.send("你好");
-        ChatResponseData chatResponseData = chatGptApi.sendChatGpt(chatRequestData);
+//        ChatResponseData chatResponseData = chatGptApi.sendChatGpt(chatRequestData);
+        String content = chatGptApi.sendChatGpt(chatRequestData);
         //文字转语言
         AzureTtsApi azureTtsApi = new AzureTtsApi();
         AzureTtsRequest azureTtsRequest = new AzureTtsRequest();
-        List<ChatResponseData.Choice> choices = chatResponseData.getChoices();
-        Message message = choices.get(0).getMessage();
-        String content = message.getContent();
+//        List<ChatResponseData.Choice> choices = chatResponseData.getChoices();
+//        Message message = choices.get(0).getMessage();
+//        String content = message.getContent();
         azureTtsRequest.setText(content);
 
         azureTtsRequest.setSpeed(Float.parseFloat(messageDto.getSpeedVoice()));
